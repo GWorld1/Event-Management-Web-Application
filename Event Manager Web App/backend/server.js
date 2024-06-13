@@ -22,7 +22,7 @@ const app = express();
 
 
 //Middleware
-
+app.get('/',(req,res) =>{res.json("Working Backend")})
 app.use(express.json())
 app.use(cors());
 app.use(bodyParser.json());
