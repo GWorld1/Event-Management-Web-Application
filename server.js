@@ -24,11 +24,7 @@ const app = express();
 //Middleware
 app.get('/',(req,res) =>{res.json("Working Backend")})
 app.use(express.json())
-app.use(cors({
-    origin: [`${process.env.FRONTEND_URL}`],
-    methods: ["POST","GET"],
-    credentials:true
-}));
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/api/events',EventRoutes)
 app.use('/api/auth', AuthRoutes)
