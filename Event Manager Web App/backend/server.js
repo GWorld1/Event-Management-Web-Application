@@ -9,7 +9,7 @@ import {router as CartRoutes} from "./routes/cart.routes.js"
 import cookieParser from 'cookie-parser'
 import dotenv from 'dotenv';
 dotenv.config({
-    path:'../.env' //give .env file location
+    path:'./.env' //give .env file location
 });
 const port = process.env.PORT;
 const mongodb = process.env.MONGO_DB;
@@ -35,7 +35,7 @@ app.use(cookieParser());
 
 app.use((req, res, next) => {
   // Set CORS headers
-  res.header("Access-Control-Allow-Origin","http://localhost:5174/" ); // Replace with your frontend domain
+  res.header("Access-Control-Allow-Origin",`${process.env.FRONTEND_URL}` ); // Replace with your frontend domain
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
   res.header("Access-Control-Allow-Credentials", "true"); // Allow credentials (cookies, etc.)
@@ -44,6 +44,7 @@ app.use((req, res, next) => {
   next();
 });
 //Connect to MongoDB
+
 mongoose.connect(mongodb)
 .then(()=>{
     
